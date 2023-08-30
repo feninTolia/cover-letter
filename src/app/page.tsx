@@ -1,113 +1,169 @@
-import Image from 'next/image'
+/* eslint-disable react/no-unescaped-entities */
+'use client';
+
+import { ChangeEvent, useState } from 'react';
+import { Toaster, toast } from 'react-hot-toast';
+
+const initialValues = {
+  sex: '',
+  type: '',
+  position: '',
+  company: '',
+  whyThisCompany: 'web application development',
+};
 
 export default function Home() {
+  const [values, setValues] = useState(initialValues);
+
+  const handleValuesChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="flex min-h-screen ">
+      <div>
+        <Toaster position="top-left" reverseOrder={true} />
+      </div>
+
+      <div className=" p-4 w-1/2 bg-green-200 text-black text-2xl flex flex-col gap-8">
+        <div className=" flex flex-col gap-6">
+          <p> Dear {values.sex || '________'}, </p>
+          <p>
+            I'm happy to apply for the currently open{' '}
+            {values.position || '__________'} position in the{' '}
+            {values.company || '__________'}.
+          </p>
+          <p>
+            I am a Junior {values.type || '__________'} Developer. I'm dedicated
+            to clean, accessible, efficient and reusable code. My skills include
+            a solid foundation in HTML, CSS, JS, TS, React and Next.js. I have
+            experience with Nest. I have hands-on experience in designing and
+            building modern enterprise applications from the ground up. I'm
+            familiar with Agile/Scrum and have led and worked in teams.
+          </p>
+          <p>
+            I am interested in your vacancy as I want to participate in{' '}
+            {values.whyThisCompany} in such a company like yours. It is
+            important for me to grow as a {values.type || '__________'}{' '}
+            developer and bring my skills and passion to a team.
+          </p>
+          <p>
+            It would be a privilege to do this in the{' '}
+            {values.company || '__________'}.
+          </p>
+          <p>
+            I'm ready to complete a test task. I'm looking forward to sharing
+            all my experiences in an interview.
+          </p>
         </div>
+        <button
+          className=" bg-slate-100 p-4 rounded w-full shadow active:bg-green-500"
+          onClick={(e) => {
+            const previousTextSibling = e.currentTarget
+              .previousSibling as HTMLDivElement;
+
+            if (!previousTextSibling?.innerText) {
+              toast.error('Smth went wrong');
+              return;
+            }
+
+            navigator.clipboard.writeText(previousTextSibling.innerText);
+            toast.success('Copied!');
+          }}
+        >
+          COPY
+        </button>
       </div>
+      <div className=" w-1/2 bg-blue-100 p-10 text-xl text-black font-bold select-none">
+        <form className=" flex flex-col gap-8 select-none">
+          <fieldset className=" flex gap-8">
+            <label className=" bg-purple-400  py-4 px-10 rounded inline-flex gap-4">
+              Sir
+              <input
+                type="radio"
+                name="sex"
+                value="Sir"
+                onChange={handleValuesChange}
+              />
+            </label>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+            <label className=" bg-purple-400  py-4 px-10 rounded inline-flex gap-4">
+              Madam
+              <input
+                type="radio"
+                name="sex"
+                value="Madam"
+                onChange={handleValuesChange}
+              />
+            </label>
+          </fieldset>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <fieldset className=" flex gap-8">
+            <label className=" bg-purple-400  py-4 px-6 rounded inline-flex gap-4">
+              Front-end
+              <input
+                type="radio"
+                name="type"
+                value="Front-end"
+                onChange={handleValuesChange}
+              />
+            </label>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+            <label className=" bg-purple-400  py-4 px-6 rounded inline-flex gap-4">
+              Back-end
+              <input
+                type="radio"
+                name="type"
+                value="Back-end"
+                onChange={handleValuesChange}
+              />
+            </label>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+            <label className=" bg-purple-400  py-4 px-6 rounded inline-flex gap-4">
+              FullStack
+              <input
+                type="radio"
+                name="type"
+                value="Full-stack"
+                onChange={handleValuesChange}
+              />
+            </label>
+          </fieldset>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+          <label className=" flex flex-col gap-2">
+            Position
+            <input
+              name="position"
+              type="text"
+              value={values.position}
+              onChange={handleValuesChange}
+              className="py-4 px-10 rounded font-normal  select-none"
+            />
+          </label>
+
+          <label className=" flex flex-col gap-2">
+            Company
+            <input
+              name="company"
+              type="text"
+              value={values.company}
+              onChange={handleValuesChange}
+              className="py-4 px-10 rounded font-normal"
+            />
+          </label>
+
+          <label className=" flex flex-col gap-2">
+            Why this company
+            <input
+              name="whyThisCompany"
+              type="text"
+              value={values.whyThisCompany}
+              onChange={handleValuesChange}
+              className="py-4 px-10 rounded font-normal"
+            />
+          </label>
+        </form>
       </div>
     </main>
-  )
+  );
 }
