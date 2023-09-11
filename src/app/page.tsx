@@ -120,7 +120,7 @@ export default function Home() {
             </label>
 
             <label className=" bg-purple-400  py-4 px-6 rounded inline-flex gap-4">
-              FullStack
+              Full Stack
               <input
                 type="radio"
                 name="type"
