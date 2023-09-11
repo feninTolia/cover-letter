@@ -124,7 +124,7 @@ export default function Home() {
               <input
                 type="radio"
                 name="type"
-                value="Full-stack"
+                value="Full Stack"
                 onChange={handleValuesChange}
               />
             </label>
