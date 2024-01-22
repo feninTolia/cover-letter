@@ -35,11 +35,12 @@ export default function Home() {
           </p>
           <p>
             I am a Junior {values.type || '__________'} Developer. I'm dedicated
-            to clean, accessible, efficient and reusable code. My skills include
-            a solid foundation in HTML, CSS, JS, TS, React and Next.js. I have
-            experience with Nest. I have hands-on experience in designing and
-            building modern enterprise applications from the ground up. I'm
-            familiar with Agile/Scrum and have led and worked in teams.
+            to clean, accessible, efficient and reusable code.My skills include
+            a solid foundation in HTML5, CSS3, JS ES6+, TS, React and Next.js. I
+            have experience with Express, OOP and MVC. I have hands-on
+            experience in designing and building modern enterprise applications
+            from the ground up in a junior developer position. I'm familiar with
+            Agile/Scrum and have led and worked in teams.
           </p>
           <p>
             I am interested in your vacancy as I want to participate in{' '}
@@ -93,6 +94,16 @@ export default function Home() {
                 type="radio"
                 name="sex"
                 value="Madam"
+                onChange={handleValuesChange}
+              />
+            </label>
+
+            <label className=" bg-purple-400  py-4 px-10 rounded inline-flex gap-4">
+              Sir or Madam
+              <input
+                type="radio"
+                name="sex"
+                value="Sir or Madam"
                 onChange={handleValuesChange}
               />
             </label>
