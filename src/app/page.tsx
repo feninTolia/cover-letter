@@ -35,7 +35,7 @@ export default function Home() {
           </p>
           <p>
             I am a Junior {values.type || '__________'} Developer. I'm dedicated
-            to clean, accessible, efficient and reusable code.My skills include
+            to clean, accessible, efficient and reusable code. My skills include
             a solid foundation in HTML5, CSS3, JS ES6+, TS, React and Next.js. I
             have experience with Express, OOP and MVC. I have hands-on
             experience in designing and building modern enterprise applications
